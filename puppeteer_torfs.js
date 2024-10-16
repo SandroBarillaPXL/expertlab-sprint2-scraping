@@ -48,13 +48,13 @@ const scrapePage = async () => {
         type: product.querySelector('.brand > a')?.textContent.trim(),
         amountOfColors: product.querySelector('.product-tile__color-amount')?.textContent.trim(),
         price: product.querySelector('.value')?.textContent.trim(),
-        imageUrl: product.querySelector('.tile-image')?.src
+        imageUrl: product.querySelector('.tile-image')?.getAttribute('data-src')
       };
     });
   });
   
   await browser.close();
-  console.log(productDetails[productDetails.length - 1]);
+  console.log(productDetails);
   return productDetails;
 };
 
