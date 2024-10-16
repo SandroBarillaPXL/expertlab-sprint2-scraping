@@ -33,8 +33,7 @@ const scrapePage = async () => {
         nextButton.click();
       }
     });
-    console.log(`Next page clicked - Attempt ${attempt + 1}`);
-
+    
     // Wait for navigation or changes after clicking the next button
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
@@ -54,15 +53,7 @@ const scrapePage = async () => {
   });
   
   await browser.close();
-  console.log(productDetails);
   return productDetails;
 };
 
-
-
-function filterdata() {
-  const data = scrapePage();
-  console.log(data);
-}
-
-filterdata();
+export default scrapePage;
