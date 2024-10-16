@@ -1,8 +1,8 @@
 import puppeteer from "puppeteer";
 
-const listShoes = async () => {
+const scrapePage = async () => {
   const browser = await puppeteer.launch({
-    headless: false
+    headless: true
   });
 
   const page = await browser.newPage();
@@ -17,15 +17,13 @@ const listShoes = async () => {
   }
 
   let attempt = 0;
-  while (true) {
+  while (attempt < 1) { // Limit the number of attempts to 2 for testing purposes => change to true for production
     // Wait for the next button to appear
     const nextButton = await page.$(".btn.btn-primary.px-5");
     if (!nextButton) {
       console.log("No more next button available, stopping the loop.");
       break;
     }
-
-    console.log(`Next button is visible - Attempt ${attempt + 1}`);
 
     // Use evaluate method to scroll into view and click the next button
     await page.evaluate(() => {
@@ -35,16 +33,36 @@ const listShoes = async () => {
         nextButton.click();
       }
     });
-    console.log(`Next page clicked using evaluate method - Attempt ${attempt + 1}`);
+    console.log(`Next page clicked - Attempt ${attempt + 1}`);
 
     // Wait for navigation or changes after clicking the next button
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
-    console.log(`Navigation to next page completed - Attempt ${attempt + 1}`);
 
     attempt++;
   }
 
-  //await browser.close();
+  const productDetails = await page.evaluate(() => {
+    return Array.from(document.querySelectorAll('.product-tile')).map(product => {
+      return {
+        name: product.querySelector('.pdp-link > a')?.textContent.trim(),
+        type: product.querySelector('.brand > a')?.textContent.trim(),
+        amountOfColors: product.querySelector('.product-tile__color-amount')?.textContent.trim(),
+        price: product.querySelector('.value')?.textContent.trim(),
+        imageUrl: product.querySelector('.tile-image')?.src
+      };
+    });
+  });
+  
+  await browser.close();
+  console.log(productDetails[productDetails.length - 1]);
+  return productDetails;
 };
 
-listShoes();
+
+
+function filterdata() {
+  const data = scrapePage();
+  console.log(data);
+}
+
+filterdata();
