@@ -58,6 +58,7 @@ const scrapePage = async (url, devMode, maxPages) => {
     return productDetails;
   } 
   catch (error) {
+    console.error("An error occurred during scraping:", error.message);
     return error;
   } 
   finally {
