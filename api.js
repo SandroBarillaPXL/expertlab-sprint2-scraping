@@ -6,10 +6,12 @@ const app = express();
 const port = 3000;
 
 app.use(cors()); 
+app.use(express.json());
 
-app.get("/api/scrape", async (req, res) => {
+app.post("/api/scrape", async (req, res) => {
   try {
-    const data = await scrapePage();
+    const url = req.body.url;
+    const data = await scrapePage(url);
     res.json(data);
   } catch (error) {
     res.status(500).send("Error scraping page");

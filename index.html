@@ -7,6 +7,15 @@
     <script type="module" src="script.js" defer></script> 
 </head>
 <body>
+    <h1>Torfs scraper</h1>
+    <p>Enter a URL to scrape the product information <br>
+        e.g. <span style="color: red; font-weight: bold;">https://www.torfs.be/nl/heren/schoenen/sneakers/</span>
+    </p>
+    <form>
+        <input type="text" style="width: 500px;" id="url" placeholder="Enter URL">
+        <button type="submit" id="submitBtn">Scrape</button>
+    </form>
+    <p id="messageBox" style="margin-top: 10px; margin-bottom: 10px;"></p>
     <div id="scrapeContainer"></div>
 </body>
 </html>

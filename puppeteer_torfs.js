@@ -1,13 +1,14 @@
 import puppeteer from "puppeteer";
 
-const scrapePage = async () => {
+const scrapePage = async (url) => {
+  console.log("Scraping page:", url);
   const browser = await puppeteer.launch({
     headless: true
   });
 
   const page = await browser.newPage();
 
-  await page.goto("https://www.torfs.be/nl/jongens/schoenen/sneakers/", {
+  await page.goto(url, {
     waitUntil: "domcontentloaded"
   });
 

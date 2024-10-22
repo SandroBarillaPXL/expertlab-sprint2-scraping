@@ -28,15 +28,30 @@ function createTable(data) {
     table.appendChild(row);
   });
 
-  document.getElementById('scrapeContainer').appendChild(table);
+  scrapeContainer.appendChild(table);
 }
 
-async function fetchData() {
-  const response = await fetch('http://localhost:3000/api/scrape');
+async function fetchData(api, url) {
+  const response = await fetch(api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({url})
+    });
   const data = await response.json();
+  messageBox.innerHTML = data.error ? data.error : 'Successfully scraped <b>' + data.length + '</b> products';
   createTable(data);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  fetchData();
+const api = "http://localhost:3000/api/scrape";
+const submitBtn = document.getElementById('submitBtn');  
+const scrapeContainer = document.getElementById('scrapeContainer');
+const messageBox = document.getElementById('messageBox');
+
+submitBtn.addEventListener('click', () => {
+  event.preventDefault();
+  scrapeContainer.innerHTML = '';
+  const url = document.getElementById("url").value;
+  fetchData(api, url);
 });
