@@ -47,8 +47,7 @@ async function fetchData(api, url, devMode, maxPages) {
     }
 
     const data = await response.json();
-    messageBox.innerHTML = `Successfully scraped <b>${data.length}</b> products`;
-    createTable(data);
+    return data;
   } catch (error) {
     messageBox.innerHTML = `Error: see console for more details`;
     console.log(`Error: ${error.message}`);
@@ -66,7 +65,7 @@ const urlInput = document.getElementById('url');
 const maxPagesInput = document.getElementById('maxPages');
 const messageBox = document.getElementById('messageBox');
 
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', async () => {
   event.preventDefault();
   scrapeContainer.innerHTML = '';
   messageBox.innerHTML = '';
@@ -79,7 +78,9 @@ submitBtn.addEventListener('click', () => {
   }
   messageBox.innerHTML = 'Scraping page... please hold';
   document.body.style.cursor = 'wait';
-  fetchData(api, url, devMode, maxPages);
+  const items = await fetchData(api, url, devMode, maxPages);
+  messageBox.innerHTML = `Successfully scraped <b>${items.length}</b> products`;
+  createTable(items);
 });
 
 devModeCheckbox.addEventListener('change', () => {
