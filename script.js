@@ -59,7 +59,9 @@ submitBtn.addEventListener('click', () => {
   const url = urlInput.value;
   const devMode = devModeCheckbox.checked;
   const maxPages = maxPagesInput.value - 1;
-  fetchData(api, url, devMode, maxPages);
+  messageBox.innerHTML = 'Scraping page... please hold';
+  document.body.style.cursor = 'wait';
+  fetchData(api, url, devMode, maxPages).then(() => { document.body.style.cursor = 'default'; });
 });
 
 devModeCheckbox.addEventListener('change', () => {
