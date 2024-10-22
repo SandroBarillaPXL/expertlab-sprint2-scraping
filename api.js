@@ -16,7 +16,7 @@ app.post("/api/scrape", async (req, res) => {
     const data = await scrapePage(url, devMode, maxPages);
     res.json(data);
   } catch (error) {
-    res.status(500).send("Error scraping page");
+    res.status(500).json({ error: error.message || "Error scraping page" });
   }
 });
 

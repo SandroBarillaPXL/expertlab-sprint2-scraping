@@ -32,17 +32,31 @@ function createTable(data) {
 }
 
 async function fetchData(api, url, devMode, maxPages) {
-  const response = await fetch(api, {
+  try {
+    const response = await fetch(api, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({url, devMode, maxPages})
     });
-  const data = await response.json();
-  messageBox.innerHTML = data.error ? data.error : 'Successfully scraped <b>' + data.length + '</b> products';
-  createTable(data);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'An error occurred during scraping');
+    }
+
+    const data = await response.json();
+    messageBox.innerHTML = `Successfully scraped <b>${data.length}</b> products`;
+    createTable(data);
+  } catch (error) {
+    messageBox.innerHTML = `Error: see console for more details`;
+    console.log(`Error: ${error.message}`);
+  } finally {
+    document.body.style.cursor = 'default';
+  }
 }
+
 
 const api = "http://localhost:3000/api/scrape";
 const submitBtn = document.getElementById('submitBtn');
@@ -59,9 +73,13 @@ submitBtn.addEventListener('click', () => {
   const url = urlInput.value;
   const devMode = devModeCheckbox.checked;
   const maxPages = maxPagesInput.value - 1;
+  if (!url) {
+    messageBox.innerHTML = 'Please enter a URL';
+    return;
+  }
   messageBox.innerHTML = 'Scraping page... please hold';
   document.body.style.cursor = 'wait';
-  fetchData(api, url, devMode, maxPages).then(() => { document.body.style.cursor = 'default'; });
+  fetchData(api, url, devMode, maxPages);
 });
 
 devModeCheckbox.addEventListener('change', () => {
