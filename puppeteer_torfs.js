@@ -4,7 +4,8 @@ const scrapePage = async (url, devMode, maxPages) => {
   console.log("Scraping page:", url);
   
   const browser = await puppeteer.launch({
-    headless: true
+    headless: true,
+    args: ["--headless=old"]
   });
 
   const page = await browser.newPage();
