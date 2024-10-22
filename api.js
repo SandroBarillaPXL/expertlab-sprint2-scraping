@@ -11,7 +11,8 @@ app.use(express.json());
 app.post("/api/scrape", async (req, res) => {
   try {
     const url = req.body.url;
-    const data = await scrapePage(url);
+    const devMode = req.body.devMode;
+    const data = await scrapePage(url, devMode);
     res.json(data);
   } catch (error) {
     res.status(500).send("Error scraping page");

@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-const scrapePage = async (url) => {
+const scrapePage = async (url, devMode) => {
   console.log("Scraping page:", url);
   const browser = await puppeteer.launch({
     headless: true
@@ -17,8 +17,9 @@ const scrapePage = async (url) => {
     await cookieBtn.click();
   }
 
+  const maxAttempts = devMode ? 2 : Infinity;
   let attempt = 0;
-  while (attempt < 1) { // Limit the number of attempts to 2 for testing purposes => change to true for production
+  while (attempt < maxAttempts) {
     // Wait for the next button to appear
     const nextButton = await page.$(".btn.btn-primary.px-5");
     if (!nextButton) {

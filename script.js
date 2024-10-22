@@ -31,13 +31,13 @@ function createTable(data) {
   scrapeContainer.appendChild(table);
 }
 
-async function fetchData(api, url) {
+async function fetchData(api, url, devMode) {
   const response = await fetch(api, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({url})
+      body: JSON.stringify({url, devMode})
     });
   const data = await response.json();
   messageBox.innerHTML = data.error ? data.error : 'Successfully scraped <b>' + data.length + '</b> products';
@@ -45,13 +45,16 @@ async function fetchData(api, url) {
 }
 
 const api = "http://localhost:3000/api/scrape";
-const submitBtn = document.getElementById('submitBtn');  
+const submitBtn = document.getElementById('submitBtn');
+const devModeCheckbox = document.getElementById('devMode');  
 const scrapeContainer = document.getElementById('scrapeContainer');
 const messageBox = document.getElementById('messageBox');
 
 submitBtn.addEventListener('click', () => {
   event.preventDefault();
   scrapeContainer.innerHTML = '';
+  messageBox.innerHTML = '';
   const url = document.getElementById("url").value;
-  fetchData(api, url);
+  const devMode = devModeCheckbox.checked;
+  fetchData(api, url, devMode);
 });
