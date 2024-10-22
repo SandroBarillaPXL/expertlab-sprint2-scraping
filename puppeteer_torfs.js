@@ -1,25 +1,23 @@
 import puppeteer from "puppeteer";
 
-const scrapePage = async (url, devMode) => {
+const scrapePage = async (url, devMode, maxPages) => {
   console.log("Scraping page:", url);
+  
   const browser = await puppeteer.launch({
     headless: true
   });
 
   const page = await browser.newPage();
-
   await page.goto(url, {
     waitUntil: "domcontentloaded"
   });
 
   const cookieBtn = await page.$("#onetrust-reject-all-handler");
-  if (cookieBtn) {
-    await cookieBtn.click();
-  }
+  await cookieBtn?.click();
 
-  const maxAttempts = devMode ? 2 : Infinity;
-  let attempt = 0;
-  while (attempt < maxAttempts) {
+  let currentPageNr = 0;
+  const limit = devMode ? maxPages : Infinity;
+  while (currentPageNr < limit) {
     // Wait for the next button to appear
     const nextButton = await page.$(".btn.btn-primary.px-5");
     if (!nextButton) {
@@ -39,7 +37,7 @@ const scrapePage = async (url, devMode) => {
     // Wait for navigation or changes after clicking the next button
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
-    attempt++;
+    currentPageNr++;
   }
 
   const productDetails = await page.evaluate(() => {

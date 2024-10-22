@@ -2,7 +2,7 @@ function createTable(data) {
   const table = document.createElement('table');
   table.border = '1';
   const headerRow = document.createElement('tr');
-  const headers = ['Name', 'Type', 'Amount of Colors', 'Price', 'Image URL'];
+  const headers = ['Name', 'Type', 'Amount of colors', 'Price', 'Image'];
   headers.forEach(headerText => {
     const header = document.createElement('th');
     header.textContent = headerText;
@@ -31,13 +31,13 @@ function createTable(data) {
   scrapeContainer.appendChild(table);
 }
 
-async function fetchData(api, url, devMode) {
+async function fetchData(api, url, devMode, maxPages) {
   const response = await fetch(api, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({url, devMode})
+      body: JSON.stringify({url, devMode, maxPages})
     });
   const data = await response.json();
   messageBox.innerHTML = data.error ? data.error : 'Successfully scraped <b>' + data.length + '</b> products';
@@ -48,13 +48,20 @@ const api = "http://localhost:3000/api/scrape";
 const submitBtn = document.getElementById('submitBtn');
 const devModeCheckbox = document.getElementById('devMode');  
 const scrapeContainer = document.getElementById('scrapeContainer');
+const urlInput = document.getElementById('url');
+const maxPagesInput = document.getElementById('maxPages');
 const messageBox = document.getElementById('messageBox');
 
 submitBtn.addEventListener('click', () => {
   event.preventDefault();
   scrapeContainer.innerHTML = '';
   messageBox.innerHTML = '';
-  const url = document.getElementById("url").value;
+  const url = urlInput.value;
   const devMode = devModeCheckbox.checked;
-  fetchData(api, url, devMode);
+  const maxPages = maxPagesInput.value - 1;
+  fetchData(api, url, devMode, maxPages);
+});
+
+devModeCheckbox.addEventListener('change', () => {
+  maxPages.style.visibility = devModeCheckbox.checked ? 'visible' : 'hidden';
 });
