@@ -1,4 +1,4 @@
-import { fetchData, createTable } from "./puppeteer_torfs.js";
+import { fetchData, createTable } from "./functions.js";
 
 const api = "http://localhost:3000/api/scrape";
 const submitBtn = document.getElementById('submitBtn');
