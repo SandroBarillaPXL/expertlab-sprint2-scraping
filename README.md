@@ -2,7 +2,7 @@
 This repository serves as a PoC of web scraping
 
 ## :computer: App: Torfs scraper
-This app scrapes the website of Torfs and returns the name and price of the items. Users can choose which category they want to scrape by filling in the appropriate URL. For testing purposes, a development mode is available. When enabled, the user can choose how many pages they want to scrape instead of everything. This speeds up the process and is useful for testing.
+This app scrapes the website of Torfs with the webscraping tool [Puppeteer](https://pptr.dev/) for items. Users can choose which category they want to scrape by filling in the appropriate URL. For testing purposes, a development mode is available. When enabled, the user can choose how many pages they want to scrape instead of everything. This speeds up the process and is useful for testing.
 <br><br>
 The app displays all items in a table containing the names, types, amount of colors, prices and images of all scraped items.
 
@@ -40,7 +40,7 @@ node api.js
 ```bash
 git clone https://github.com/SandroBarillaPXL/expertlab-sprint2-scraping
 ```
-2. Build the Docker images (optional)
+2. Build the Docker images (optional) for both the [frontend](./Dockerfile-fe) and [backend](./Dockerfile-be)
 ```bash
 docker build -t <username>/<imagename-frontend>:<tag> -f Dockerfile-fe .
 docker build -t <username>/<imagename-backend>:<tag> -f Dockerfile-be .
@@ -52,7 +52,7 @@ docker run -d -p <port>:80 <username>/<imagename-frontend>:<tag>
 ```
 <br>
 
-Alternatively, you can use the `docker-compose.yml` file to run the containers
+Alternatively, you can use the [`docker-compose.yml`](./docker-compose.yml) file to run the containers. By default, the app is available at [`http://localhost:8500`](http://localhost:8500).
 ```bash
 docker-compose up -d
 ```
