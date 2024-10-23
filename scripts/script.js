@@ -25,12 +25,15 @@ submitBtn.addEventListener('click', async () => {
 
   messageBox.innerHTML = 'Scraping page... please hold';
   document.body.style.cursor = 'wait';
+  
   const startTime = performance.now();
   let elapsedTime = 0;
   const timerInterval = setInterval(() => {
     elapsedTime = ((performance.now() - startTime) / 1000).toFixed(3);
     messageBox.innerHTML = `Scraping page... please hold <i>(${elapsedTime} seconds elapsed)</i>`;
   }, 100);
+  /* source:
+  https://chatgpt.com/share/671915f4-08c8-8009-b1cb-102f55368e6e */
   
   items = await fetchData(api, url, devMode, maxPages);
   clearInterval(timerInterval);

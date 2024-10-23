@@ -69,3 +69,4 @@ docker compose -f ./docker/docker-compose.yml up -d
 * https://pptr.dev/guides/docker/
 * [ChatGPT conversation 1](https://chatgpt.com/share/6718de31-c400-8009-8553-fe0fa345833c)
 * [ChatGPT conversation 2](https://chatgpt.com/share/6718fef5-8b2c-8009-ad24-afc78a75db24)
+* [ChatGPT conversation 3](https://chatgpt.com/share/671915f4-08c8-8009-b1cb-102f55368e6e)
