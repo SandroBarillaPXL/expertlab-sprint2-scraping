@@ -1,4 +1,4 @@
-FROM node
+FROM ghcr.io/puppeteer/puppeteer:latest
 COPY api.js puppeteer_torfs.js package.json ./
 RUN npm install
 EXPOSE 3000
