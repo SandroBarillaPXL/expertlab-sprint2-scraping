@@ -3,7 +3,7 @@ import puppeteer from "puppeteer";
 export default async function scrapePage(url, devMode, maxPages) {
   let browser;
   try {
-    console.log("Scraping page:", url);
+    console.log("Scraping page:", url, "with max pages:", maxPages);
     browser = await puppeteer.launch({
       headless: true,
       args: ["--headless=old"]
