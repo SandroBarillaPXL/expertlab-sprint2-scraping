@@ -19,10 +19,21 @@ submitBtn.addEventListener('click', async () => {
     messageBox.innerHTML = 'Please enter a URL';
     return;
   }
+
   messageBox.innerHTML = 'Scraping page... please hold';
   document.body.style.cursor = 'wait';
+  const startTime = performance.now();
+  let elapsedTime = 0;
+  const timerInterval = setInterval(() => {
+    elapsedTime = ((performance.now() - startTime) / 1000).toFixed(3);
+    messageBox.innerHTML = `Scraping page... please hold <i>(${elapsedTime} seconds elapsed)</i>`;
+  }, 100);
+  
   const items = await fetchData(api, url, devMode, maxPages);
-  messageBox.innerHTML = `Successfully scraped <b>${items.length}</b> products`;
+  clearInterval(timerInterval);
+  const endTime = performance.now();
+  const totalTimeTaken = ((endTime - startTime) / 1000).toFixed(3);
+  messageBox.innerHTML = `Successfully scraped <b>${items.length}</b> products in <b>${totalTimeTaken}</b> seconds`;
   createTable(items);
 });
 
