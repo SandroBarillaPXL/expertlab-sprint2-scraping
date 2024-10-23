@@ -27,6 +27,7 @@ export function createTable(data) {
       } else if (text?.includes('https')) {
         const anchor = document.createElement('a');
         anchor.href = text;
+        anchor.target = '_blank';
         anchor.textContent = 'Link';
         cell.appendChild(anchor);
       } else {
