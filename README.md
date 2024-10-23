@@ -8,9 +8,9 @@ The app displays all items in a table containing the names, types, amount of col
 
 <details>
 <summary>Screenshots</summary>
-<img src="imgs/img1.png" alt="Screenshot 1" width="400"><br><br>
+<kbd><img src="imgs/img1.png" alt="Screenshot 1" width="400"></kbd><br><br>
 Dev mode enabled<br>
-<img src="imgs/img2.png" alt="Screenshot 2" width="400">
+<kbd><img src="imgs/img2.png" alt="Screenshot 2" width="400"></kbd>
 </details>
 
 ## :wrench: Installation
