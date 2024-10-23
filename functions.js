@@ -2,7 +2,7 @@ export function createTable(data) {
   const table = document.createElement('table');
   table.border = '1';
   const headerRow = document.createElement('tr');
-  const headers = ['Item nr', 'Name', 'Type', 'Amount of colors', 'Price', 'Image'];
+  const headers = ['Item nr', 'Name', 'Type', 'Amount of colors', 'Price', 'Image', 'Link'];
   headers.forEach(headerText => {
     const header = document.createElement('th');
     header.textContent = headerText;
@@ -18,12 +18,17 @@ export function createTable(data) {
 
     Object.values(product).forEach(text => {
       const cell = document.createElement('td');
-      if (text?.includes('http')) {
+      if (text?.includes('image')) {
         const img = document.createElement('img');
         img.src = text;
         img.alt = 'Product Image';
         img.width = 100;
         cell.appendChild(img);
+      } else if (text?.includes('https')) {
+        const anchor = document.createElement('a');
+        anchor.href = text;
+        anchor.textContent = 'Link';
+        cell.appendChild(anchor);
       } else {
         cell.textContent = text;
       }
