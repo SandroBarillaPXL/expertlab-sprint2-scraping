@@ -57,7 +57,7 @@ docker run -d -p <port>:80 <username>/<imagename-frontend>:<tag>
 
 Alternatively, you can use the [`docker-compose.yml`](docker/docker-compose.yml) file to run the containers. By default, the app is available at [`http://localhost:8500`](http://localhost:8500).
 ```bash
-docker-compose up -d
+docker compose -f ./docker/docker-compose.yml up -d
 ```
 
 ## :information_source: Sources
