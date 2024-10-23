@@ -4,13 +4,15 @@ This repository serves as a PoC of web scraping
 ## :computer: App: Torfs scraper
 This app scrapes the website of Torfs with the webscraping tool [Puppeteer](https://pptr.dev/) for items. Users can choose which category they want to scrape by filling in the appropriate URL. For testing purposes, a development mode is available. When enabled, the user can choose how many pages they want to scrape instead of everything. This speeds up the process and is useful for testing.
 <br><br>
-The app displays all items in a table containing the names, types, amount of colors, prices and images of all scraped items.
+The app displays all scraped items in a table containing the names, types, amount of colors, prices images and a link to the original item. The user can also download this data as a JSON-file.
 
 <details>
 <summary>Screenshots</summary>
 <kbd><img src="imgs/img1.png" alt="Screenshot 1" width="400"></kbd><br><br>
 Dev mode enabled<br>
-<kbd><img src="imgs/img2.png" alt="Screenshot 2" width="400"></kbd>
+<kbd><img src="imgs/img2.png" alt="Screenshot 2" width="400"></kbd><br><br>
+JSON download<br>
+<kbd><img src="imgs/img3.png" alt="Screenshot 3 JSON" width="400"></kbd>
 </details>
 
 ## :wrench: Installation
@@ -64,4 +66,5 @@ docker-compose up -d
 * https://www.scrapingbee.com/blog/web-scraping-javascript/
 * https://pptr.dev/
 * https://pptr.dev/guides/docker/
-* [ChatGPT conversation](https://chatgpt.com/share/6718de31-c400-8009-8553-fe0fa345833c)
+* [ChatGPT conversation 1](https://chatgpt.com/share/6718de31-c400-8009-8553-fe0fa345833c)
+* [ChatGPT conversation 2](https://chatgpt.com/share/6718fef5-8b2c-8009-ad24-afc78a75db24)
