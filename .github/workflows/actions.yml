@@ -18,8 +18,8 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/expertlab2:fe
-          context: ./Dockerfile-fe
-          
+          file: ./Dockerfile-fe
+
   docker-be:
     runs-on: ubuntu-latest
     steps:
@@ -34,4 +34,4 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/expertlab2:be
-          context: ./Dockerfile-be        
+          file: ./Dockerfile-be        
