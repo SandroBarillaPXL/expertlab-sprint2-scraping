@@ -38,15 +38,15 @@ node scripts/api.js
 <br>
 
 ### :whale: Docker installation
-1. Clone this repository and navigate to the [`docker`](./docker/) directory
+1. Clone this repository and navigate to the directory
 ```bash
 git clone https://github.com/SandroBarillaPXL/expertlab-sprint2-scraping
-cd docker
+cd expertlab-sprint2-scraping
 ```
 2. Build the Docker images (optional) for both the [frontend](docker/Dockerfile-fe) and [backend](docker/Dockerfile-be)
 ```bash
-docker build -t <username>/<imagename-frontend>:<tag> -f Dockerfile-fe .
-docker build -t <username>/<imagename-backend>:<tag> -f Dockerfile-be .
+docker build -t <username>/<imagename-frontend>:<tag> -f docker/Dockerfile-fe .
+docker build -t <username>/<imagename-backend>:<tag> -f docker/Dockerfile-be .
 ```
 3. Run the Docker containers
 ```bash
