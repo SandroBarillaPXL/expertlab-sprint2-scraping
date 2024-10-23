@@ -50,7 +50,7 @@ export default async function scrapePage(url, devMode, maxPages) {
           price: product.querySelector('.value')?.textContent.trim(),
           imageUrl: product.querySelector('.tile-image')?.getAttribute('data-src') 
                     || product.querySelector('.tile-image')?.getAttribute('src'),
-          productPage: "https://www.torfs.be/" + product.querySelector('.js-product-tile-link')?.getAttribute('href')
+          productPage: "https://www.torfs.be" + product.querySelector('.js-product-tile-link')?.getAttribute('href')
         };
       });
     });
