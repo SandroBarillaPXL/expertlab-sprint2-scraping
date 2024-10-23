@@ -51,6 +51,7 @@ docker run -d -p 3000:3000 <username>/<imagename-backend>:<tag>
 docker run -d -p <port>:80 <username>/<imagename-frontend>:<tag>
 ```
 <br>
+
 Alternatively, you can use the `docker-compose.yml` file to run the containers
 ```bash
 docker-compose up -d
