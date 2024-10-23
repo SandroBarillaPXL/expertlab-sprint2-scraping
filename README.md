@@ -27,7 +27,7 @@ npm install
 ```	
 3. Start the backend API-server, accessible at `http://localhost:3000`
 ```bash
-node api.js
+node scripts/api.js
 ```
 4. Start the frontend with a simple HTTP server of your choice, like the "live server" extension in Visual Studio Code for local use.
 
@@ -38,11 +38,12 @@ node api.js
 <br>
 
 ### :whale: Docker installation
-1. Clone this repository
+1. Clone this repository and navigate to the [`docker`](./docker/) directory
 ```bash
 git clone https://github.com/SandroBarillaPXL/expertlab-sprint2-scraping
+cd docker
 ```
-2. Build the Docker images (optional) for both the [frontend](./Dockerfile-fe) and [backend](./Dockerfile-be)
+2. Build the Docker images (optional) for both the [frontend](docker/Dockerfile-fe) and [backend](docker/Dockerfile-be)
 ```bash
 docker build -t <username>/<imagename-frontend>:<tag> -f Dockerfile-fe .
 docker build -t <username>/<imagename-backend>:<tag> -f Dockerfile-be .
@@ -54,7 +55,7 @@ docker run -d -p <port>:80 <username>/<imagename-frontend>:<tag>
 ```
 <br>
 
-Alternatively, you can use the [`docker-compose.yml`](./docker-compose.yml) file to run the containers. By default, the app is available at [`http://localhost:8500`](http://localhost:8500).
+Alternatively, you can use the [`docker-compose.yml`](docker/docker-compose.yml) file to run the containers. By default, the app is available at [`http://localhost:8500`](http://localhost:8500).
 ```bash
 docker-compose up -d
 ```

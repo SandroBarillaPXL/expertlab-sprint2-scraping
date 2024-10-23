@@ -1,5 +1,5 @@
 FROM ghcr.io/puppeteer/puppeteer:latest
-COPY api.js puppeteer_torfs.js package.json ./
+COPY ../scripts/api.js ../scripts/puppeteer_torfs.js ../package.json ./
 RUN npm install
 EXPOSE 3000
 CMD ["node", "api.js"]
