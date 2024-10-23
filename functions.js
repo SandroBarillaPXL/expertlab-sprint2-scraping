@@ -27,7 +27,6 @@ export function createTable(data) {
     });
     table.appendChild(row);
   });
-
   scrapeContainer.appendChild(table);
 }
   
@@ -53,5 +52,5 @@ export async function fetchData(api, url, devMode, maxPages) {
     console.log(`Error: ${error.message}`);
   } finally {
     document.body.style.cursor = 'default';
-    }
+  }
 }

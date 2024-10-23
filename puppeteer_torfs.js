@@ -4,7 +4,6 @@ export default async function scrapePage(url, devMode, maxPages) {
   let browser;
   try {
     console.log("Scraping page:", url);
-  
     browser = await puppeteer.launch({
       headless: true,
       args: ["--headless=old"]
@@ -39,7 +38,6 @@ export default async function scrapePage(url, devMode, maxPages) {
       
       // Wait for navigation or changes after clicking the next button
       await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
-
       currentPageNr++;
     }
 
@@ -56,12 +54,10 @@ export default async function scrapePage(url, devMode, maxPages) {
       });
     });
     return productDetails;
-  } 
-  catch (error) {
+  } catch (error) {
     console.error("An error occurred during scraping:", error.message);
     return error;
-  } 
-  finally {
+  } finally {
     await browser.close();
   }
 };
