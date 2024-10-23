@@ -1,5 +1,5 @@
 FROM node
-COPY ./node_modules/ api.js puppeteer_torfs.js package.json ./
+COPY api.js puppeteer_torfs.js package.json ./
 RUN npm install
 EXPOSE 3000
 CMD ["node", "api.js"]
