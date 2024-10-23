@@ -29,10 +29,11 @@ node api.js
 ```
 4. Start the frontend with a simple HTTP server of your choice, like the "live server" extension in Visual Studio Code for local use.
 
-<br><br>
+<br>
 >:bulb: Note: Puppeteer requires a Chromium browser to be installed on your system. 
 
-<br><br>
+<br>
+
 ### :whale: Docker installation
 1. Clone this repository
 ```bash
