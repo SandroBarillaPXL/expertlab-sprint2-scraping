@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-const scrapePage = async (url, devMode, maxPages) => {
+export default async function scrapePage(url, devMode, maxPages) {
   let browser;
   try {
     console.log("Scraping page:", url);
@@ -65,5 +65,3 @@ const scrapePage = async (url, devMode, maxPages) => {
     await browser.close();
   }
 };
-
-export default scrapePage;
