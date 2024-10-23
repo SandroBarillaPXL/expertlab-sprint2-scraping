@@ -2,7 +2,7 @@ export function createTable(data) {
   const table = document.createElement('table');
   table.border = '1';
   const headerRow = document.createElement('tr');
-  const headers = ['Name', 'Type', 'Amount of colors', 'Price', 'Image'];
+  const headers = ['Item nr', 'Name', 'Type', 'Amount of colors', 'Price', 'Image'];
   headers.forEach(headerText => {
     const header = document.createElement('th');
     header.textContent = headerText;
@@ -10,8 +10,12 @@ export function createTable(data) {
   });
   table.appendChild(headerRow);
 
-  data.forEach(product => {
+  data.forEach((product, index) => {
     const row = document.createElement('tr');
+    const itemNumberCell = document.createElement('td');
+    itemNumberCell.textContent = index + 1;
+    row.appendChild(itemNumberCell);
+
     Object.values(product).forEach(text => {
       const cell = document.createElement('td');
       if (text?.includes('http')) {
