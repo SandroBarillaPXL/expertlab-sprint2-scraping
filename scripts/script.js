@@ -17,7 +17,7 @@ submitBtn.addEventListener('click', async () => {
   downloadBtn.style.visibility = 'hidden';
   const url = urlInput.value;
   const devMode = devModeCheckbox.checked;
-  const maxPages = maxPagesInput.value - 1;
+  const maxPages = maxPagesInput.value != "" ? maxPagesInput.value - 1 : 0;
   if (!url) {
     messageBox.innerHTML = 'Please enter a URL';
     return;
