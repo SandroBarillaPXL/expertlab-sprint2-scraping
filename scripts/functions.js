@@ -64,3 +64,18 @@ export async function fetchData(api, url, devMode, maxPages) {
     document.body.style.cursor = 'default';
   }
 }
+
+export function downloadJSON(data) {
+  const dataStr = JSON.stringify(data, null, 2); // Convert the items to a pretty-printed JSON string
+  const blob = new Blob([dataStr], { type: 'application/json' }); // Create a blob for the JSON data
+  const url = URL.createObjectURL(blob); // Create a URL for the blob
+  const a = document.createElement('a'); // Create a temporary link element
+  a.href = url;
+  a.download = 'scraped-items.json'; // Name of the downloaded file
+  document.body.appendChild(a); // Append the link to the DOM
+  a.click(); // Programmatically click the link to trigger download
+  document.body.removeChild(a); // Remove the link from the DOM
+  URL.revokeObjectURL(url); // Revoke the URL after download
+  /* source:
+  https://chatgpt.com/share/6718fef5-8b2c-8009-ad24-afc78a75db24 */
+}
