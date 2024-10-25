@@ -17,9 +17,10 @@ JSON download<br>
 
 ## :wrench: Installation
 ### :bust_in_silhouette: Manual installation
-1. Clone this repository
+1. Clone this repository and navigate to the folder
 ```bash
 git clone https://github.com/SandroBarillaPXL/expertlab-sprint2-scraping
+cd expertlab-sprint2-scraping
 ```
 2. Install the dependencies
 ```bash
